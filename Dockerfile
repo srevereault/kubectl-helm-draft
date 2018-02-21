@@ -26,6 +26,10 @@ RUN curl -LO \
 RUN tar -xvf draft-${DRAFT_LATEST_VERSION}-linux-amd64.tar.gz
 RUN mv linux-amd64/draft /usr/local/bin 
 
+# Download and install telepresence
+RUN curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh | bash
+RUN apt install --no-install-recommends -y telepresence sudo
+
 # Expose port for kubectl proxy
 EXPOSE 8080
 
