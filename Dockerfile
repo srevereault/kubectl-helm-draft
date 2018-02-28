@@ -30,6 +30,9 @@ RUN mv linux-amd64/draft /usr/local/bin
 RUN curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh | bash
 RUN apt install --no-install-recommends -y telepresence sudo
 
+# Add kubectl namespace via env var
+RUN echo "alias kubectl='kubectl --namespace=\$KUBECTL_NAMESPACE'" >> /root/.bashrc
+
 # Expose port for kubectl proxy
 EXPOSE 8080
 
