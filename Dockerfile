@@ -33,6 +33,10 @@ RUN apt install --no-install-recommends -y telepresence sudo
 # Add kubectl namespace via env var
 RUN echo "alias kubectl='kubectl --namespace=\$KUBECTL_NAMESPACE'" >> /root/.bashrc
 
+# Download and install kompose
+RUN curl -L https://github.com/kubernetes/kompose/releases/download/v1.9.0/kompose-linux-amd64 -o /usr/local/bin/kompose
+RUN chmod +x /usr/local/bin/kompose
+
 # Expose port for kubectl proxy
 EXPOSE 8080
 
